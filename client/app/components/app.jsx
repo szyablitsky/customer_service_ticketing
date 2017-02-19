@@ -9,6 +9,7 @@ const App = ({ name }) =>
       <header className='app-header'>
         <div className='container'>
           <div className='app-title'>Customer Service</div>
+          <div className='app-title-small'>CS</div>
           <div>
             <Link to='/auth'>Auth</Link>
             <Link to='/requests'>Requests</Link>
