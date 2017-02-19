@@ -12,6 +12,7 @@ gem 'react_on_rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'bcrypt'
+# gem 'mini_racer', platforms: :ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
