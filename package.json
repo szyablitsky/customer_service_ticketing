@@ -10,5 +10,10 @@
     "postinstall": "cd client && yarn install",
     "rails-server": "echo 'visit http://localhost:5000/' && foreman start -f Procfile.dev",
     "test": "rspec"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.15.0",
+    "eslint-plugin-react": "^6.10.0"
   }
 }

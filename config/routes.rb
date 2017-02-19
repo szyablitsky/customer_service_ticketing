@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root to: 'pages#home'
+  get '*unmatched_route', to: 'pages#home'
 end
