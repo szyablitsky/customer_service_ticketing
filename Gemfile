@@ -8,6 +8,7 @@ end
 gem 'rails'
 gem 'mysql2'
 gem 'puma'
+gem 'react_on_rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'bcrypt'
