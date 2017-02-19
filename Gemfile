@@ -1,17 +1,20 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
 gem 'rails'
+
 gem 'mysql2'
 gem 'puma'
+
+gem 'bcrypt'
+
 gem 'react_on_rails'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'bcrypt'
 # gem 'mini_racer', platforms: :ruby
 
 # Use Capistrano for deployment
@@ -19,7 +22,10 @@ gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'capybara'
+  gem 'poltergeist'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 group :development do
