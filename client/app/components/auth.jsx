@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import Redirect from 'react-router-dom/Redirect'
 
 import { SIGN_IN, SIGN_UP } from '../constants/auth/mode'
 import FormField from 'shared/components/form_field'
@@ -29,7 +30,9 @@ export default class Auth extends React.Component {
   }
 
   render() {
-    const { mode, name, email, password, changeField } = this.props
+    const { loggedIn, mode, name, email, password, submitting, changeField } = this.props
+    if (loggedIn) return <Redirect to='/requests'/>
+
     return (
       <div className='auth-container'>
         <form className='auth-form' onSubmit={this.handleSubmit}>
@@ -44,9 +47,11 @@ export default class Auth extends React.Component {
             <FormField name='name' label='Your name' value={name} onChange={changeField}/>
           }
           <FormField name='email' label='Email' value={email} onChange={changeField}/>
-          <FormField name='password' label='Password' value={password} onChange={changeField}/>
+          <FormField type='password' name='password' label='Password'
+                     value={password} onChange={changeField}/>
           <div className='form-buttons'>
-            <Button type='submit' title={modes[mode].title} className='primary'/>
+            <Button type='submit' title={modes[mode].title}
+                    className='primary' loading={submitting}/>
           </div>
         </form>
       </div>
@@ -55,6 +60,7 @@ export default class Auth extends React.Component {
 }
 
 Auth.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
   mode: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,

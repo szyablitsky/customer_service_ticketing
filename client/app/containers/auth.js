@@ -6,6 +6,7 @@ import Auth from '../components/auth'
 
 export default connect(
   (state) => ({
+    loggedIn: Boolean(state.user.id),
     mode: state.auth.mode,
     name: state.auth.fields.name,
     email: state.auth.fields.email,

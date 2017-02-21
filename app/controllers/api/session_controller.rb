@@ -1,5 +1,5 @@
 class API::SessionController < API::BaseController
   def create
-    render json: {}
+    respond Session::Create, location: nil
   end
 end

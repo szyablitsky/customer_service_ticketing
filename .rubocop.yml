@@ -1,0 +1,59 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - client/**/*
+    - config/environments/*
+    - config/initializers/*
+    - db/schema.rb
+    - db/seeds.rb
+    - bin/*
+    - spec/services/org_service_update/cascade_spec.rb
+    - lib/tasks/db.rake
+
+Rails:
+  Enabled: true
+
+Rails/TimeZone:
+  Enabled: false
+
+Rails/EnumUniqueness:
+  Enabled: false
+
+AsciiComments:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+LineLength:
+  Max: 100
+
+Lint/UnifiedInteger:
+  Description: 'Use Integer instead of Fixnum or Bignum'
+  Enabled: false
+
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Exclude:
+    - "spec/**/*.rb"
+    - "**/*.rake"
+    - "db/migrate/*.rb"
+
+Rails/HttpPositionalArguments:
+  Exclude:
+    - spec/acceptance/**/*_spec.rb

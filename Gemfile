@@ -11,11 +11,16 @@ gem 'mysql2'
 gem 'puma'
 
 gem 'bcrypt'
+gem 'jwt'
 
 gem 'react_on_rails'
 gem 'sass-rails'
 gem 'uglifier'
 # gem 'mini_racer', platforms: :ruby
+
+gem 'multi_json'
+gem 'responders'
+gem 'trailblazer-rails', '< 1 '
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

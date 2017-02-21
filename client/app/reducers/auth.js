@@ -36,8 +36,10 @@ export default function(state = initialState, action = null) {
 
     case actionTypes.SUBMIT_ERROR:
     case actionTypes.SUBMIT_FAILURE:
-    case actionTypes.SUBMIT_SUCCESS:
       return { ...state, submitting: false }
+
+    case actionTypes.SUBMIT_SUCCESS:
+      return initialState
 
     default:
       return state
