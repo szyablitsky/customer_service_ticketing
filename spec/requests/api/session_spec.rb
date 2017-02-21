@@ -6,7 +6,7 @@ RSpec.describe 'Session' do
     let(:password) { 'password' }
     let!(:user) { create(:user, email: email, password: password) }
 
-    before { post api_session_url, params: params, headers: headers_without_authorization }
+    before { post api_sign_in_url, params: params, headers: headers_without_authorization }
 
     context 'with invalid params' do
       let(:params) { { session: { email: '', password: '' } }.to_json }
@@ -40,5 +40,9 @@ RSpec.describe 'Session' do
     end
   end
 
-  
+  describe 'Sign Out' do
+    before { delete api_sign_out_url('uuid'), headers: headers }
+
+    it { expect(response).to have_http_status(:no_content) }
+  end
 end

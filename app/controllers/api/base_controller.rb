@@ -1,4 +1,43 @@
 class API::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_user_params
   respond_to :json
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    user_from_token
+  end
+
+  def logged_in?
+    current_user.present?
+  end
+
+  private
+
+  def set_user_params
+    params[:current_user] = current_user
+  end
+
+  def user_from_token
+    @current_user = user_id_in_token? ? find_user(auth_token['user_id']) : nil
+  end
+
+  def find_user(user_id)
+    User.where(id: user_id).first
+  end
+
+  def http_token
+    return @http_token if defined?(@http_token)
+    header = request.headers['Authorization']
+    auth_type, token = header.to_s.split(' ')
+    @http_token = auth_type == 'Bearer' ? token : nil
+  end
+
+  def auth_token
+    @auth_token ||= AccessToken.decode(http_token)
+  end
+
+  def user_id_in_token?
+    http_token && auth_token && auth_token['user_id'].to_i
+  end
 end

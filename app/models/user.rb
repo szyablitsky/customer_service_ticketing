@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :authentications
+
   def email=(value)
     super(value.downcase)
   end
