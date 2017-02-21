@@ -8,7 +8,7 @@ const name = (state = '', action) => {
     default:
       return state
   }
-};
+}
 
 const appReducer = combineReducers({ name })
 

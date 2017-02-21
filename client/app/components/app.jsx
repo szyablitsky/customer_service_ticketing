@@ -1,38 +1,32 @@
-import React, { PropTypes } from 'react'
-import Router from 'react-router-dom/BrowserRouter'
+import React from 'react'
 import Link from 'react-router-dom/Link'
+import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
 
-const App = ({ name }) =>
-  <Router>
-    <div>
-      <header className='app-header'>
-        <div className='container'>
-          <div className='app-title'>Customer Service</div>
-          <div className='app-title-small'>CS</div>
-          <div>
-            <Link to='/auth'>Auth</Link>
-            <Link to='/requests'>Requests</Link>
-            <span>{name}</span>
-          </div>
-        </div>
-      </header>
-      <main>
-        <div className='container'>
-            <Route path='/auth' render={() =>
-              <div>Auth</div>
-            } />
-            <Route path='/requests' render={() =>
-              <div>Requests</div>
-            } />
-            <div>test</div>
-        </div>
-      </main>
-    </div>
-  </Router>
+import Auth from '../containers/auth/'
 
-App.propTypes = {
-  name: PropTypes.string.isRequired,
-}
+const App = () =>
+  <div>
+    <header className='app-header'>
+      <div className='container'>
+        <div className='app-title'>Customer Service</div>
+        <div className='app-title-small'>CS</div>
+        <div>
+          <Link to='/auth'>Auth</Link>
+          <Link to='/requests'>Requests</Link>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div className='container'>
+        <Switch>
+          <Route path='/auth' component={Auth} />
+          <Route path='/requests' render={() =>
+            <div>Requests</div>
+          } />
+        </Switch>
+      </div>
+    </main>
+  </div>
 
 export default App

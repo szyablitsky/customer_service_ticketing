@@ -6,10 +6,35 @@ body
   font-size: 15px
   color: $primary-text-color
 
+$header-backgroud-color: #3f669f
+$header-text-color: #ddd
+$header-size: 40px
+
+.app-header
+  background-color: $header-backgroud-color
+  color: $header-text-color
+
+  > .container
+    display: flex
+    height: $header-size
+    justify-content: space-between
+    align-items: center
+
+$main-mairgin-top: 20px
+$main-mairgin-bottom: 50px
+$main-skip-size: $header-size + $main-mairgin-top + $main-mairgin-bottom
+
 main
-  margin-top: 20px
-  margin-bottom: 20px
-  min-height: calc(100vh - 40px - 20px * 2)
+  flex-direction: column
+  display: flex
+  margin-top: $main-mairgin-top
+  margin-bottom: $main-mairgin-bottom
+  min-height: calc(100vh - #{$main-skip-size})
+
+  > .container
+    flex-grow: 1
+    flex-direction: column
+    display: flex
 
 .container
   margin: 0 15px

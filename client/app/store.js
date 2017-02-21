@@ -1,8 +1,14 @@
-import { createStore } from 'redux'
-import appReducer from './reducers/app'
+import { compose, createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import reducers, { initialStates } from './reducers/'
 
-const configureStore = (railsProps) => (
-  createStore(appReducer, railsProps)
-);
+export default () => {
+  const enhancers = compose(
+    applyMiddleware(thunkMiddleware),
+    typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
+      ? window.devToolsExtension()
+      : (f) => f
+  )
 
-export default configureStore
+  return createStore(reducers, initialStates, enhancers)
+}
