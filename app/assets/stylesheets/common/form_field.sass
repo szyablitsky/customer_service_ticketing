@@ -1,0 +1,72 @@
+$font-size: 15px
+$font-size-small: 13px
+
+$input-border-color: #aaa
+$input-background-color: #fcfcff
+
+.form-field-container
+  position: relative
+
+.form-field-input
+  height: 36px
+  padding: 0 10px
+
+.form-field-textarea
+  padding: 7px 10px
+
+.form-field-input,
+.form-field-textarea
+  transition: border-color .1s linear
+  margin: 17px 0
+  border: 1px solid $input-border-color
+  border-radius: 2px
+  box-sizing: border-box
+  width: 100%
+  background-color: $input-background-color
+  font-size: 15px
+  color: $color-text-header
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.hover
+    border-color: $color-accent
+    outline: none
+
+  &:focus,
+  &:active
+    box-shadow: 0 0 2px 0 $color-accent
+
+  &.error
+    border-color: $color-error
+
+    &:focus,
+    &:active
+      box-shadow: 0 0 2px 0 $color-error
+
+.form-field-label
+  position: absolute
+  top: 25px
+  left: 10px
+  transition: all .15s ease-in
+  cursor: text
+  font-size: $font-size
+  font-weight: normal
+  color: $color-text-gray
+
+  &:hover + .form-field-input
+    border-color: $color-accent
+
+  &.outside
+    top: 0
+    left: 0
+    font-size: $font-size-small
+    color: $color-accent
+
+.form-field-errors
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+  font-size: $font-size-small
+  color: $color-error
