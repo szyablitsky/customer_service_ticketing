@@ -1,7 +1,13 @@
+$hover-shadow-color: rgba(255, 255, 255, .2)
+
 .app-title,
 .app-title-small
+  cursor: pointer
   font-size: 20px
   font-weight: 500
+
+  &:hover
+    text-shadow: 0 0 1px $hover-shadow-color
 
 .app-title
   @media (max-width: 499px)

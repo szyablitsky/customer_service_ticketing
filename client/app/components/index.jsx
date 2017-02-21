@@ -3,7 +3,7 @@ import Link from 'react-router-dom/Link'
 import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
 
-import Auth from '../containers/auth/'
+import Auth from '../containers/auth'
 
 const App = () =>
   <div>
