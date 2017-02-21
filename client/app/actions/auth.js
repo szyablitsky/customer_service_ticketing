@@ -1,4 +1,6 @@
 import * as actionTypes from '../constants/auth'
+import SessionEndpoint from 'shared/endpoints/session'
+import { notifyInfo } from 'shared/components/notifier'
 
 export const changeMode = (mode) => ({ type: actionTypes.CHANGE_MODE, mode })
 export const changeField = (name, value) => ({ type: actionTypes.CHANGE_FIELD, name, value })
@@ -8,19 +10,20 @@ const submitError = (errors) => ({ type: actionTypes.SUBMIT_ERROR, errors })
 const submitFailure = () => ({ type: actionTypes.SUBMIT_FAILURE })
 const submitSuccess = (user) => ({ type: actionTypes.SUBMIT_SUCCESS, user })
 
-import { notifyInfo, notifyError, notifySuccess, notifyWarning } from 'shared/components/notifier'
 
 export const submit = () => (dispatch, getState) => {
-  const { submitting, fields } = getState().auth
+  const { submitting, fields: { email, password } } = getState().auth
   if (submitting) return
 
   dispatch(submitBegin())
-  dispatch(submitError())
-  dispatch(submitFailure())
-  dispatch(submitSuccess())
-
-  notifyError('error')
-  notifyInfo('info')
-  notifySuccess('success')
-  notifyWarning('warning')
+  SessionEndpoint.signIn({ email, password })
+  .then((response) => {
+    if (response.success) {
+      notifyInfo('Welcome back!')
+      dispatch(submitSuccess(response.json))
+    } else {
+      dispatch(submitError(response.json.errors))
+    }
+  })
+  .catch(() => dispatch(submitFailure()))
 }

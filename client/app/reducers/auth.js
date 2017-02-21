@@ -1,3 +1,5 @@
+import omit from 'lodash/omit'
+
 import { SIGN_IN } from '../constants/auth/mode'
 import * as actionTypes from '../constants/auth'
 
@@ -11,6 +13,7 @@ export const initialState = {
   mode: SIGN_IN,
   fields: fieldsInitialState,
   submitting: false,
+  errors: {},
 }
 
 export default function(state = initialState, action = null) {
@@ -22,7 +25,11 @@ export default function(state = initialState, action = null) {
       return { ...state, mode }
 
     case actionTypes.CHANGE_FIELD:
-      return { ...state, fields: { ...state.fields, [name]: value } }
+      return {
+        ...state,
+        fields: { ...state.fields, [name]: value },
+        errors: omit(state.errors, name),
+      }
 
     case actionTypes.SUBMIT_BEGIN:
       return { ...state, submitting: true }

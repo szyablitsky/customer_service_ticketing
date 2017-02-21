@@ -60,6 +60,7 @@ Auth.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   submitting: PropTypes.bool.isRequired,
+  errors: PropTypes.object.isRequired,
   changeMode: PropTypes.func.isRequired,
   changeField: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,

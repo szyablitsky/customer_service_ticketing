@@ -11,6 +11,7 @@ export default connect(
     email: state.auth.fields.email,
     password: state.auth.fields.password,
     submitting: state.auth.submitting,
+    errors: state.auth.errors,
   }),
   (dispatch) => bindActionCreators({ changeMode, changeField, submit }, dispatch)
 )(Auth)
