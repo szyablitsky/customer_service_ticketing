@@ -23,11 +23,16 @@ export default class Auth extends React.Component {
     changeMode(modes[mode].target)
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.submit()
+  }
+
   render() {
-    const { mode, name, email, password, changeField, submit } = this.props
+    const { mode, name, email, password, changeField } = this.props
     return (
       <div className='auth-container'>
-        <form className='auth-form' onSubmit={submit}>
+        <form className='auth-form' onSubmit={this.handleSubmit}>
           <header className='h1'>
             <span>{modes[mode].title}</span>
             <span className='auth-form-title-middle'> or </span>

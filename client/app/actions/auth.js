@@ -8,6 +8,8 @@ const submitError = (errors) => ({ type: actionTypes.SUBMIT_ERROR, errors })
 const submitFailure = () => ({ type: actionTypes.SUBMIT_FAILURE })
 const submitSuccess = (user) => ({ type: actionTypes.SUBMIT_SUCCESS, user })
 
+import { notifyInfo, notifyError, notifySuccess, notifyWarning } from 'shared/components/notifier'
+
 export const submit = () => (dispatch, getState) => {
   const { submitting, fields } = getState().auth
   if (submitting) return
@@ -16,4 +18,9 @@ export const submit = () => (dispatch, getState) => {
   dispatch(submitError())
   dispatch(submitFailure())
   dispatch(submitSuccess())
+
+  notifyError('error')
+  notifyInfo('info')
+  notifySuccess('success')
+  notifyWarning('warning')
 }
