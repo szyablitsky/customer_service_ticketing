@@ -43,7 +43,6 @@ function createNotification(message, title, type) {
   }
 
   const text = document.createElement('div')
-  text.className = 'notification-text'
   notification.appendChild(text)
 
   if (title) {
