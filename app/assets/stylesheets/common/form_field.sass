@@ -1,9 +1,6 @@
 $font-size: 15px
 $font-size-small: 13px
 
-$input-border-color: #aaa
-$input-background-color: #fcfcff
-
 .form-field-container
   position: relative
 
@@ -18,11 +15,11 @@ $input-background-color: #fcfcff
 .form-field-textarea
   transition: border-color .1s linear
   margin: 17px 0
-  border: 1px solid $input-border-color
+  border: 1px solid lighten($color-accent, 20%)
   border-radius: 2px
   box-sizing: border-box
   width: 100%
-  background-color: $input-background-color
+  background-color: lighten($color-accent, 55%)
   font-size: 15px
   color: $color-text-header
 

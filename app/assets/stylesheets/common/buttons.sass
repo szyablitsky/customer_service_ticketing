@@ -1,0 +1,125 @@
+.form-buttons
+  margin-top: 20px
+
+$button-default-color: #5d5d5d
+$button-default-color-active: $color-text-header
+$button-default-border-color: #ddd
+$button-default-border-color-active: #c9c9c9
+$button-default-background-color: #f7f7f7
+$button-default-background-color-active: #e7e7e7
+$gd1: $button-default-background-color
+$gd2: $button-default-background-color-active
+
+
+$button-primary-color: lighten($color-accent, 15%)
+$button-primary-color-active: $color-accent
+$button-primary-border-color: lighten($color-accent, 20%)
+$button-primary-border-color-active: $color-accent
+$button-primary-background-color: lighten($color-accent, 55%)
+$button-primary-background-color-active: lighten($color-accent, 40%)
+$gp1: $button-primary-background-color
+$gp2: $button-primary-background-color-active
+
+$button-success-color: #5cac34
+$button-success-color-active: #390
+$button-success-border-color: #e1ecde
+$button-success-border-color-active: #cde2c9
+$button-success-background-color: #eff3ee
+$button-success-background-color-active: #e1ecde
+$gs1: $button-success-background-color
+$gs2: $button-success-background-color-active
+
+$animation-offset: 53px
+@keyframes loading-button
+  from
+    transform: translateX(0)
+  to
+    transform: translateX($animation-offset)
+
+.button
+  position: relative
+  overflow: hidden
+  transition: all .2s
+  border: 1px solid $button-default-border-color
+  border-radius: 2px
+  box-sizing: border-box
+  min-width: 64px
+  height: 36px
+  padding: 0 10px
+  background-color: $button-default-background-color
+  cursor: pointer
+  font-family: inherit
+  font-size: 14px
+  font-weight: 500
+  text-transform: uppercase
+  color: $button-default-color
+
+  &:focus,
+  &:hover,
+  &:active
+    border-color: $button-default-border-color-active
+    background-color: $button-default-background-color-active
+    color: $button-default-color-active
+    outline: none
+
+    &.loading
+      border-color: $button-default-border-color
+      color: $button-default-color
+
+  &.loading
+    background-color: transparent
+    cursor: default
+
+    & > .loading-background
+      position: absolute
+      z-index: -1
+      top: 0
+      bottom: 0
+      left: -$animation-offset
+      right: 0
+      animation: loading-button 1s linear infinite
+      background: repeating-linear-gradient(-45deg, $gd1 1px, $gd2 2px, $gd2 11px, $gd1 12px, $gd1 20px)
+
+  &.primary
+    border-color: $button-primary-border-color
+    background-color: $button-primary-background-color
+    color: $button-primary-color
+
+    &:focus,
+    &:hover,
+    &:active
+      border-color: $button-primary-border-color-active
+      background-color: $button-primary-background-color-active
+      color: $button-primary-color-active
+
+      &.loading
+        border-color: $button-primary-border-color
+        color: $button-primary-color
+
+    &.loading
+      background-color: transparent
+
+      & > .loading-background
+        background: repeating-linear-gradient(-45deg, $gp1 1px, $gp2 2px, $gp2 11px, $gp1 12px, $gp1 20px)
+
+  &.success
+    border-color: $button-success-border-color
+    background-color: $button-success-background-color
+    color: $button-success-color
+
+    &:focus,
+    &:hover,
+    &:active
+      border-color: $button-success-border-color-active
+      background-color: $button-success-background-color-active
+      color: $button-success-color-active
+
+      &.loading
+        border-color: $button-success-border-color
+        color: $button-success-color
+
+    &.loading
+      background-color: transparent
+
+      & > .loading-background
+        background: repeating-linear-gradient(-45deg, $gs1 1px, $gs2 2px, $gs2 11px, $gs1 12px, $gs1 20px)

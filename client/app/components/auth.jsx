@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 
 import { SIGN_IN, SIGN_UP } from '../constants/auth/mode'
 import FormField from 'shared/components/form_field'
+import Button from 'shared/components/button'
 
 const modes = {
   [SIGN_IN]: {
@@ -23,10 +24,10 @@ export default class Auth extends React.Component {
   }
 
   render() {
-    const { mode, name, email, password, changeField } = this.props
+    const { mode, name, email, password, changeField, submit } = this.props
     return (
       <div className='auth-container'>
-        <form className='auth-form'>
+        <form className='auth-form' onSubmit={submit}>
           <header className='h1'>
             <span>{modes[mode].title}</span>
             <span className='auth-form-title-middle'> or </span>
@@ -39,6 +40,9 @@ export default class Auth extends React.Component {
           }
           <FormField name='email' label='Email' value={email} onChange={changeField}/>
           <FormField name='password' label='Password' value={password} onChange={changeField}/>
+          <div className='form-buttons'>
+            <Button type='submit' title={modes[mode].title} className='primary'/>
+          </div>
         </form>
       </div>
     )
