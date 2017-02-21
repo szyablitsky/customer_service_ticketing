@@ -28,3 +28,7 @@ export const submit = () => (dispatch, getState) => {
   })
   .catch(() => dispatch(submitFailure()))
 }
+
+export const signOut = () => (dispatch, getState) => {
+  
+}

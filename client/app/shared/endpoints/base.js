@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import QueryString from 'query-string'
 import includes from 'lodash/includes'
 import { decamelizeKeys, camelizeKeys } from 'humps'

@@ -28,9 +28,14 @@ gem 'trailblazer-rails', '< 1 '
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :development do

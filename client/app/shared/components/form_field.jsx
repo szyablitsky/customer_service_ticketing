@@ -22,7 +22,7 @@ export default class FormField extends React.Component {
   }
 
   render() {
-    const { className, type, value, label, errors } = this.props
+    const { className, type, value, name, label, errors } = this.props
     const { focus, hover } = this.state
 
     const containerClass = classNames('form-field-container', className)
@@ -42,12 +42,14 @@ export default class FormField extends React.Component {
           {label}
         </label>
         {this.isTextarea()
-          ? <TextArea className={inputClass} value={value} onChange={this.handleChange}
+          ? <TextArea id={name} className={inputClass}
+              value={value} onChange={this.handleChange}
               onFocus={this.handleFocus} onBlur={this.handleBlur}
               ref={(c) => { this.input = c }} />
-          : <input className={inputClass} value={value} onChange={this.handleChange}
+          : <input id={name} type={type} className={inputClass}
+              value={value} onChange={this.handleChange}
               onFocus={this.handleFocus} onBlur={this.handleBlur}
-              type={type} ref={(c) => { this.input = c }} />}
+              ref={(c) => { this.input = c }} />}
         {errors && <div className='form-field-errors'>{errors.join(', ')}</div>}
       </div>
     )

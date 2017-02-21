@@ -2,9 +2,11 @@ import React from 'react'
 import Link from 'react-router-dom/Link'
 import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
+import Redirect from 'react-router-dom/Redirect'
 
 import UserInfo from '../containers/user_info'
 import Auth from '../containers/auth'
+import Requests from '../containers/requests/'
 
 const App = () =>
   <div>
@@ -23,9 +25,8 @@ const App = () =>
         </div>
         <Switch>
           <Route path='/auth' component={Auth}/>
-          <Route path='/requests' render={() =>
-            <div>Requests</div>
-          }/>
+          <Route path='/requests' component={Requests}/>
+          <Redirect to='/requests'/>
         </Switch>
       </div>
     </main>
