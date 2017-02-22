@@ -19,7 +19,8 @@ const modes = {
 }
 
 export default class Auth extends React.Component {
-  handleModeChange = () => {
+  handleModeChange = (e) => {
+    e.preventDefault()
     const { mode, changeMode } = this.props
     changeMode(modes[mode].target)
   }
@@ -39,9 +40,9 @@ export default class Auth extends React.Component {
           <header className='h1'>
             <span>{modes[mode].title}</span>
             <span className='auth-form-title-middle'> or </span>
-            <span className='auth-form-change-mode' onClick={this.handleModeChange}>
+            <a href='' className='auth-form-change-mode' onClick={this.handleModeChange}>
               {modes[mode].alternative}
-            </span>
+            </a>
           </header>
           {mode === SIGN_UP &&
             <FormField name='name' label='Your name' errors={errors.name}

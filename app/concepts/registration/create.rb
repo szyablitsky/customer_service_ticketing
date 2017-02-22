@@ -9,6 +9,13 @@ class Registration::Create < ApplicationOperation
     validates :name, presence: true
     validates :email, presence: true
     validates :password, presence: true
+
+    validate :email_uniqueness
+
+    def email_uniqueness
+      return if User.where(email: email.downcase).count.zero?
+      errors.add(:email, :taken)
+    end
   end
 
   representer AuthenticationRepresenter
