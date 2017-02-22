@@ -22,7 +22,7 @@ export default function(state = initialState, action = null) {
   switch (type) {
 
     case actionTypes.CHANGE_MODE:
-      return { ...state, mode }
+      return { ...state, mode, errors: {} }
 
     case actionTypes.CHANGE_FIELD:
       return {

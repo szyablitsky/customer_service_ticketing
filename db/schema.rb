@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221062847) do
+ActiveRecord::Schema.define(version: 20170222035115) do
 
   create_table "authentications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20170221062847) do
     t.index ["user_id"], name: "index_authentications_on_user_id", using: :btree
   end
 
+  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "support_agent_id"
+    t.string   "title"
+    t.string   "text"
+    t.boolean  "open"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["support_agent_id"], name: "index_requests_on_support_agent_id", using: :btree
+    t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",            null: false
     t.string   "email",           null: false
@@ -34,4 +46,6 @@ ActiveRecord::Schema.define(version: 20170221062847) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "requests", "users"
+  add_foreign_key "requests", "users", column: "support_agent_id"
 end
