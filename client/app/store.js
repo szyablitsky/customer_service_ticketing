@@ -11,8 +11,7 @@ export default () => {
     ...initialStates,
     user: {
       ...initialStates.user,
-      ...omit(userState, 'user'),
-      ...userState.user,
+      ...userState,
     },
   }
 

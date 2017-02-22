@@ -4,11 +4,11 @@ class Request::Create < ApplicationOperation
   policy Request::Policy, :create?
 
   contract do
-    property :title
-    property :text
+    property :subject
+    property :description
 
-    validates :title, presence: true
-    validates :text, presence: true
+    validates :subject, presence: true
+    validates :description, presence: true
   end
 
   representer Request::Representer

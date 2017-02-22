@@ -10,13 +10,13 @@ export const initialState = {
 }
 
 export default function(state = initialState, action = null) {
-  const { type, info } = action
+  const { type, user } = action
 
   switch (type) {
 
     // authentication
     case actionTypes.SUBMIT_SUCCESS:
-      return { ...state, ...omit(info, 'user'), ...info.user }
+      return { ...state, ...user }
 
     // sign out
     case actionTypes.SIGN_OUT_SUCCESS:

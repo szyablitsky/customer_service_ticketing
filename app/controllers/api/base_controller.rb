@@ -1,6 +1,6 @@
 class API::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_user_params
+  before_action :authenticate_request
   respond_to :json
 
   rescue_from(Trailblazer::NotAuthorizedError) { head :forbidden }
@@ -9,23 +9,14 @@ class API::BaseController < ApplicationController
   rescue_from(JWT::VerificationError) { head :unauthorized }
   rescue_from(JWT::DecodeError) { head :unauthorized }
 
-  def current_user
-    return @current_user if defined?(@current_user)
-    user_from_token
-  end
-
-  def logged_in?
-    current_user.present?
-  end
-
   private
 
-  def set_user_params
-    params[:current_user] = current_user
+  def authenticate_request
+    params[:current_user] = user_from_token
   end
 
   def user_from_token
-    @current_user = user_id_in_token? ? find_user(auth_token['user_id']) : nil
+    user_id_in_token? ? find_user(auth_token['user_id']) : nil
   end
 
   def find_user(user_id)

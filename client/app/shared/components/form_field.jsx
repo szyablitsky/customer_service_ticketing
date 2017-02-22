@@ -22,7 +22,7 @@ export default class FormField extends React.Component {
   }
 
   render() {
-    const { className, type, value, name, label, errors } = this.props
+    const { className, type, value, name, label, rows, errors } = this.props
     const { focus, hover } = this.state
 
     const containerClass = classNames('form-field-container', className)
@@ -42,7 +42,7 @@ export default class FormField extends React.Component {
           {label}
         </label>
         {this.isTextarea()
-          ? <TextArea id={name} className={inputClass}
+          ? <TextArea id={name} className={inputClass} rows={rows}
               value={value} onChange={this.handleChange}
               onFocus={this.handleFocus} onBlur={this.handleBlur}
               ref={(c) => { this.input = c }} />
@@ -62,6 +62,7 @@ FormField.propTypes = {
   value: PropTypes.string.isRequired,
   name: PropTypes.string,
   label: PropTypes.string,
+  rows: PropTypes.number,
   errors: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
 }

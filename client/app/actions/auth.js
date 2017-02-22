@@ -1,3 +1,5 @@
+import omit from 'lodash/omit'
+
 import { SIGN_IN } from '../constants/auth/mode'
 import * as actionTypes from '../constants/auth'
 import SessionEndpoint from 'shared/endpoints/session'
@@ -11,7 +13,7 @@ export const changeField = (name, value) => ({ type: actionTypes.CHANGE_FIELD, n
 const submitBegin = () => ({ type: actionTypes.SUBMIT_BEGIN })
 const submitError = (errors) => ({ type: actionTypes.SUBMIT_ERROR, errors })
 const submitFailure = () => ({ type: actionTypes.SUBMIT_FAILURE })
-const submitSuccess = (info) => ({ type: actionTypes.SUBMIT_SUCCESS, info })
+const submitSuccess = (user) => ({ type: actionTypes.SUBMIT_SUCCESS, user })
 
 export const submit = () => (dispatch, getState) => {
   const { mode, submitting, fields: { name, email, password } } = getState().auth
@@ -26,8 +28,9 @@ export const submit = () => (dispatch, getState) => {
   request.then((response) => {
     if (response.success) {
       notifyInfo(mode === SIGN_IN ? 'Welcome back!' : 'Welcome!')
-      saveState('user', response.json)
-      dispatch(submitSuccess(response.json))
+      saveState('user', response.json.user)
+      saveState('credentials', omit(response.json, 'user'))
+      dispatch(submitSuccess(response.json.user))
     } else {
       if (mode === SIGN_IN) notifyError(response.json.errors.base.join(', '))
       dispatch(submitError(response.json.errors))
@@ -50,6 +53,7 @@ export const signOut = () => (dispatch, getState) => {
     if (response.success) {
       notifyInfo('Have a nice day!')
       saveState('user', {})
+      saveState('credentials', {})
       dispatch(signOutSuccess())
     } else {
       dispatch(signOutFailure())

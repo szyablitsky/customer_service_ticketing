@@ -5,7 +5,7 @@ RSpec.describe Request::Create do
   subject { described_class.run(params) }
 
   context 'valid params' do
-    let(:request) { { 'title' => 'title', 'text' => 'text' } }
+    let(:request) { { 'subject' => 'subject', 'description' => 'description' } }
     let(:params) { { current_user: user, 'request' => request } }
 
     it 'creates request' do
@@ -14,25 +14,25 @@ RSpec.describe Request::Create do
 
     it 'saves request params' do
       subject
-      expect(Request.last.title).to eq('title')
-      expect(Request.last.text).to eq('text')
+      expect(Request.last.subject).to eq('subject')
+      expect(Request.last.description).to eq('description')
     end
   end
 
   context 'empty params' do
-    let(:request) { { 'title' => '', 'text' => '' } }
+    let(:request) { { 'subject' => '', 'description' => '' } }
     let(:params) { { 'current_user': user, 'request' => request } }
 
     it 'returns errors' do
       result, operation = subject
 
       expect(result).to be false
-      expect(operation.errors.keys).to include(:title, :text)
+      expect(operation.errors.keys).to include(:subject, :description)
     end
   end
 
   context 'without user' do
-    let(:request) { { 'title' => 'title', 'text' => 'text' } }
+    let(:request) { { 'subject' => 'subject', 'description' => 'description' } }
     let(:params) { { 'request' => request } }
 
     it 'raises error' do
@@ -42,7 +42,7 @@ RSpec.describe Request::Create do
 
   context 'user is not a customer' do
     let(:user) { create(:user, role: 'support agent') }
-    let(:request) { { 'title' => 'title', 'text' => 'text' } }
+    let(:request) { { 'subject' => 'subject', 'description' => 'description' } }
     let(:params) { { current_user: user, 'request' => request } }
 
     it 'raises error' do

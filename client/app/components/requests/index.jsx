@@ -7,14 +7,14 @@ import RequestsList from '../../containers/requests/list'
 
 export default class Requests extends React.Component {
   render() {
-    const { loggedIn, isCustomer } = this.props
+    const { loggedIn, customer } = this.props
     if (!loggedIn) return <Redirect to='/auth'/>
 
     return (
       <div>
         <header className='header-with-actions'>
           <div className='h1'>Requests</div>
-          {isCustomer &&
+          {customer &&
             <Link to='/requests/new' className='link'>create new request</Link>}
         </header>
         <RequestsSelector/>
@@ -26,5 +26,5 @@ export default class Requests extends React.Component {
 
 Requests.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  isCustomer: PropTypes.bool.isRequired,
+  customer: PropTypes.bool.isRequired,
 }

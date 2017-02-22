@@ -4,14 +4,17 @@ import includes from 'lodash/includes'
 import { decamelizeKeys, camelizeKeys } from 'humps'
 
 import { notifyError } from '../components/notifier'
+import { loadCredentials } from '../credentials'
 
 function jsonParams(json, method) {
+  const { apiToken } = loadCredentials()
   return {
     method,
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': `Bearer ${apiToken}`,
     },
     body: method === 'get' ? null : JSON.stringify(json),
   }

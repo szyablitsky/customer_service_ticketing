@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Request create' do
   let(:user) { create(:user) }
-  let(:request) { { title: 'title', text: 'text' } }
+  let(:request) { { subject: 'subject', description: 'description' } }
   let(:params) { { request: request }.to_json }
 
   describe 'authenticated user' do
@@ -16,8 +16,8 @@ RSpec.describe 'Request create' do
           'id' => Integer,
           'user_id' => user.id,
           'support_agent_id' => nil,
-          'title' => String,
-          'text' => String,
+          'subject' => String,
+          'description' => String,
           'open' => true,
           'created_at' => Integer,
           'updated_at' => Integer,
@@ -26,15 +26,15 @@ RSpec.describe 'Request create' do
     end
 
     context 'with invalid params' do
-      let(:request) { { title: '', text: '' } }
+      let(:request) { { subject: '', description: '' } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
 
       it 'renders errors' do
         expect(json).to match(
           'errors' => {
-            'title' => [%(can't be blank)],
-            'text' => [%(can't be blank)],
+            'subject' => [%(can't be blank)],
+            'description' => [%(can't be blank)],
           },
         )
       end
