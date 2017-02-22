@@ -3,6 +3,12 @@ class API::BaseController < ApplicationController
   before_action :set_user_params
   respond_to :json
 
+  rescue_from(Trailblazer::NotAuthorizedError) { head :forbidden }
+  rescue_from(ActiveRecord::RecordNotFound) { head :not_found }
+  rescue_from(ApplicationPolicy::NotAuthenticatedError) { head :unauthorized }
+  rescue_from(JWT::VerificationError) { head :unauthorized }
+  rescue_from(JWT::DecodeError) { head :unauthorized }
+
   def current_user
     return @current_user if defined?(@current_user)
     user_from_token

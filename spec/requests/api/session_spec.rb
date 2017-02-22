@@ -13,7 +13,7 @@ RSpec.describe 'Session' do
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
 
-      it 'renders errors' do
+      it 'responds with errors' do
         expect(json).to match(
           'errors' => {
             'base' => [
@@ -29,7 +29,7 @@ RSpec.describe 'Session' do
 
       it { expect(response).to have_http_status(:success) }
 
-      it 'renders errors' do
+      it 'responds with user and credentials' do
         expect(json).to match(
           'user' => Hash,
           'api_key' => String,
