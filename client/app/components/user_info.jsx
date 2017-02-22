@@ -8,7 +8,7 @@ export default class UserInfo extends React.Component {
     return (
       <div>
         {`${name} | `}
-        <span className='sign-out-link' onClick={signOut}>Sign Out</span>
+        <a href='#' className='sign-out-link' onClick={signOut}>Sign Out</a>
       </div>
     )
   }
