@@ -1,11 +1,11 @@
 import React from 'react'
-import Link from 'react-router-dom/Link'
 import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
 import Redirect from 'react-router-dom/Redirect'
 
 import UserInfo from '../containers/user_info'
 import Auth from '../containers/auth'
+import RequestCreate from '../containers/request_create'
 import Requests from '../containers/requests/'
 
 const App = () =>
@@ -21,13 +21,10 @@ const App = () =>
       <div className='container'>
         <Switch>
           <Route path='/auth' component={Auth}/>
+          <Route path='/requests/new' component={RequestCreate}/>
           <Route path='/requests' component={Requests}/>
           <Redirect to='/requests'/>
         </Switch>
-        <div>
-          <Link to='/auth'>Auth</Link>
-          <Link to='/requests'>Requests</Link>
-        </div>
       </div>
     </main>
   </div>

@@ -1,14 +1,24 @@
 import React, { PropTypes } from 'react'
 import Redirect from 'react-router-dom/Redirect'
+import Link from 'react-router-dom/Link'
+
+import RequestsSelector from '../../containers/requests/selector'
+import RequestsList from '../../containers/requests/list'
 
 export default class Requests extends React.Component {
   render() {
-    const { loggedIn } = this.props
+    const { loggedIn, isCustomer } = this.props
     if (!loggedIn) return <Redirect to='/auth'/>
 
     return (
       <div>
-        Requests
+        <header className='header-with-actions'>
+          <div className='h1'>Requests</div>
+          {isCustomer &&
+            <Link to='/requests/new' className='link'>create new request</Link>}
+        </header>
+        <RequestsSelector/>
+        <RequestsList/>
       </div>
     )
   }
@@ -16,4 +26,5 @@ export default class Requests extends React.Component {
 
 Requests.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  isCustomer: PropTypes.bool.isRequired,
 }
