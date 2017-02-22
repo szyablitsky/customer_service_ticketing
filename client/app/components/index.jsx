@@ -19,15 +19,15 @@ const App = () =>
     </header>
     <main>
       <div className='container'>
-        <div>
-          <Link to='/auth'>Auth</Link>
-          <Link to='/requests'>Requests</Link>
-        </div>
         <Switch>
           <Route path='/auth' component={Auth}/>
           <Route path='/requests' component={Requests}/>
           <Redirect to='/requests'/>
         </Switch>
+        <div>
+          <Link to='/auth'>Auth</Link>
+          <Link to='/requests'>Requests</Link>
+        </div>
       </div>
     </main>
   </div>
