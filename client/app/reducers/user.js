@@ -18,6 +18,10 @@ export default function(state = initialState, action = null) {
     case actionTypes.SUBMIT_SUCCESS:
       return { ...state, ...omit(info, 'user'), ...info.user }
 
+    // sign out
+    case actionTypes.SIGN_OUT_SUCCESS:
+      return initialState
+
     default:
       return state
 

@@ -32,13 +32,16 @@ export default function(state = initialState, action = null) {
       }
 
     case actionTypes.SUBMIT_BEGIN:
+    case actionTypes.SIGN_OUT_BEGIN:
       return { ...state, submitting: true }
 
     case actionTypes.SUBMIT_ERROR:
     case actionTypes.SUBMIT_FAILURE:
+    case actionTypes.SIGN_OUT_FAILURE:
       return { ...state, submitting: false }
 
     case actionTypes.SUBMIT_SUCCESS:
+    case actionTypes.SIGN_OUT_SUCCESS:
       return initialState
 
     default:

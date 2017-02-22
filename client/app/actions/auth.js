@@ -10,7 +10,6 @@ const submitError = (errors) => ({ type: actionTypes.SUBMIT_ERROR, errors })
 const submitFailure = () => ({ type: actionTypes.SUBMIT_FAILURE })
 const submitSuccess = (info) => ({ type: actionTypes.SUBMIT_SUCCESS, info })
 
-
 export const submit = () => (dispatch, getState) => {
   const { submitting, fields: { email, password } } = getState().auth
   if (submitting) return
@@ -29,6 +28,23 @@ export const submit = () => (dispatch, getState) => {
   .catch(() => dispatch(submitFailure()))
 }
 
+const signOutBegin = () => ({ type: actionTypes.SIGN_OUT_BEGIN })
+const signOutFailure = () => ({ type: actionTypes.SIGN_OUT_FAILURE })
+const signOutSuccess = () => ({ type: actionTypes.SIGN_OUT_SUCCESS })
+
 export const signOut = () => (dispatch, getState) => {
-  
+  const { submitting } = getState().auth
+  if (submitting) return
+
+  dispatch(signOutBegin())
+  SessionEndpoint.signOut()
+  .then((response) => {
+    if (response.success) {
+      notifyInfo('Have a nice day!')
+      dispatch(signOutSuccess())
+    } else {
+      dispatch(signOutFailure())
+    }
+  })
+  .catch(() => dispatch(signOutFailure()))
 }
