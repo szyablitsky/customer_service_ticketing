@@ -1,5 +1,7 @@
+import { SIGN_IN } from '../constants/auth/mode'
 import * as actionTypes from '../constants/auth'
 import SessionEndpoint from 'shared/endpoints/session'
+import RegistrationEndpoint from 'shared/endpoints/registration'
 import { notifyInfo, notifyError } from 'shared/components/notifier'
 import { saveState } from 'shared/local_storage'
 
@@ -12,18 +14,22 @@ const submitFailure = () => ({ type: actionTypes.SUBMIT_FAILURE })
 const submitSuccess = (info) => ({ type: actionTypes.SUBMIT_SUCCESS, info })
 
 export const submit = () => (dispatch, getState) => {
-  const { submitting, fields: { email, password } } = getState().auth
+  const { mode, submitting, fields: { name, email, password } } = getState().auth
   if (submitting) return
 
   dispatch(submitBegin())
-  SessionEndpoint.signIn({ session: { email, password } })
-  .then((response) => {
+
+  const request = mode === SIGN_IN
+    ? SessionEndpoint.signIn({ session: { email, password } })
+    : RegistrationEndpoint.create({ registration: { name, email, password } })
+
+  request.then((response) => {
     if (response.success) {
-      notifyInfo('Welcome back!')
+      notifyInfo(mode === SIGN_IN ? 'Welcome back!' : 'Welcome!')
       saveState('user', response.json)
       dispatch(submitSuccess(response.json))
     } else {
-      notifyError(response.json.errors.base.join(', '))
+      if (mode === SIGN_IN) notifyError(response.json.errors.base.join(', '))
       dispatch(submitError(response.json.errors))
     }
   })

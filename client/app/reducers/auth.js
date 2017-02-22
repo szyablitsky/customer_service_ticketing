@@ -17,7 +17,7 @@ export const initialState = {
 }
 
 export default function(state = initialState, action = null) {
-  const { type, mode, name, value } = action
+  const { type, mode, name, value, errors } = action
 
   switch (type) {
 
@@ -35,10 +35,12 @@ export default function(state = initialState, action = null) {
     case actionTypes.SIGN_OUT_BEGIN:
       return { ...state, submitting: true }
 
-    case actionTypes.SUBMIT_ERROR:
     case actionTypes.SUBMIT_FAILURE:
     case actionTypes.SIGN_OUT_FAILURE:
       return { ...state, submitting: false }
+
+    case actionTypes.SUBMIT_ERROR:
+      return { ...state, submitting: false, errors }
 
     case actionTypes.SUBMIT_SUCCESS:
     case actionTypes.SIGN_OUT_SUCCESS:

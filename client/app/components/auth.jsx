@@ -30,7 +30,7 @@ export default class Auth extends React.Component {
   }
 
   render() {
-    const { loggedIn, mode, name, email, password, submitting, changeField } = this.props
+    const { loggedIn, mode, name, email, password, errors, submitting, changeField } = this.props
     if (loggedIn) return <Redirect to='/requests'/>
 
     return (
@@ -44,11 +44,13 @@ export default class Auth extends React.Component {
             </span>
           </header>
           {mode === SIGN_UP &&
-            <FormField name='name' label='Your name' value={name} onChange={changeField}/>
+            <FormField name='name' label='Your name' errors={errors.name}
+                       value={name} onChange={changeField}/>
           }
-          <FormField name='email' label='Email' value={email} onChange={changeField}/>
+          <FormField name='email' label='Email' errors={errors.email}
+                     value={email} onChange={changeField}/>
           <FormField type='password' name='password' label='Password'
-                     value={password} onChange={changeField}/>
+                     errors={errors.password} value={password} onChange={changeField}/>
           <div className='form-buttons'>
             <Button type='submit' title={modes[mode].title}
                     className='primary' loading={submitting}/>
