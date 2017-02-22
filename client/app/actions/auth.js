@@ -1,6 +1,7 @@
 import * as actionTypes from '../constants/auth'
 import SessionEndpoint from 'shared/endpoints/session'
 import { notifyInfo, notifyError } from 'shared/components/notifier'
+import { saveState } from 'shared/local_storage'
 
 export const changeMode = (mode) => ({ type: actionTypes.CHANGE_MODE, mode })
 export const changeField = (name, value) => ({ type: actionTypes.CHANGE_FIELD, name, value })
@@ -19,6 +20,7 @@ export const submit = () => (dispatch, getState) => {
   .then((response) => {
     if (response.success) {
       notifyInfo('Welcome back!')
+      saveState('user', response.json)
       dispatch(submitSuccess(response.json))
     } else {
       notifyError(response.json.errors.base.join(', '))
@@ -41,6 +43,7 @@ export const signOut = () => (dispatch, getState) => {
   .then((response) => {
     if (response.success) {
       notifyInfo('Have a nice day!')
+      saveState('user', {})
       dispatch(signOutSuccess())
     } else {
       dispatch(signOutFailure())
