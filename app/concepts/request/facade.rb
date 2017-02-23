@@ -4,11 +4,12 @@ class Request::Facade
   end
 
   def requests
-    case user.role
-    when 'customer' then scope.where(user: user)
-    when 'support agent' then scope.where(support_agent: [user.id, null])
-    when 'admin' then scope
-    end.all
+    @requests ||=
+      case user.role
+      when 'customer' then scope.where(user: user)
+      when 'support agent' then scope.where(support_agent_id: [user.id, nil])
+      when 'admin' then scope
+      end.all
   end
 
   private

@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20170222035115) do
   end
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",          null: false
+    t.integer  "user_id",                        null: false
     t.integer  "support_agent_id"
-    t.string   "subject"
-    t.string   "description"
+    t.text     "subject",          limit: 65535
+    t.text     "description",      limit: 65535
     t.boolean  "open"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["support_agent_id"], name: "index_requests_on_support_agent_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
