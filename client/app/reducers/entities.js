@@ -12,7 +12,7 @@ export const initialState = {
 }
 
 export default function(state = initialState, action = null) {
-  const { type, user, response, request } = action
+  const { type, user, response, request, payload } = action
 
   switch (type) {
 
@@ -32,10 +32,14 @@ export default function(state = initialState, action = null) {
     case requestActionTypes.CLOSE_SUCCESS:
       return {
         ...state,
-        requests: {
-          ...state.requests,
-          [request.id]: request,
-        },
+        requests: { ...state.requests, [request.id]: request },
+      }
+
+    case requestActionTypes.COMMENT_SUCCESS:
+      return {
+        ...state,
+        requests: { ...state.requests, [payload.request.id]: payload.request },
+        comments: { ...state.comments, [payload.comment.id]: payload.comment },
       }
 
     default:

@@ -47,3 +47,25 @@ export const close = (id) => (dispatch, getState) => {
   })
   .catch(() => dispatch(closeFailure()))
 }
+
+const commentBegin = (id) => ({ type: actionTypes.COMMENT_BEGIN, id })
+const commentError = (errors) => ({ type: actionTypes.COMMENT_ERROR, errors })
+const commentFailure = () => ({ type: actionTypes.COMMENT_FAILURE })
+const commentSuccess = (payload) => ({ type: actionTypes.COMMENT_SUCCESS, payload })
+
+export const comment = (requestId, content) => (dispatch, getState) => {
+  const { commentingId } = getState().request
+  if (commentingId) return
+
+  dispatch(commentBegin(requestId))
+  RequestsEndpoint.comment(requestId, { comment: { content } })
+  .then((response) => {
+    if (response.success) {
+      dispatch(commentSuccess(response.json))
+      notifySuccess('Comment submited')
+    } else {
+      dispatch(commentError(response.json.errors))
+    }
+  })
+  .catch(() => dispatch(commentFailure()))
+}

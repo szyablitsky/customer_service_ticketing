@@ -6,7 +6,7 @@ import withRouter from 'react-router-dom/withRouter'
 import FormField from 'shared/components/form_field'
 import Button from 'shared/components/button'
 
-class RequestCreate extends React.Component {
+class RequestForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { create, push } = this.props
@@ -35,7 +35,7 @@ class RequestCreate extends React.Component {
   }
 }
 
-RequestCreate.propTypes = {
+RequestForm.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   customer: PropTypes.bool.isRequired,
   subject: PropTypes.string.isRequired,
@@ -47,4 +47,4 @@ RequestCreate.propTypes = {
   push: PropTypes.func.isRequired,
 }
 
-export default withRouter(RequestCreate)
+export default withRouter(RequestForm)

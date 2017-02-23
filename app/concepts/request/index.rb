@@ -5,6 +5,8 @@ class Request::Index < ApplicationOperation
 
   representer do
     collection :requests, decorator: Request::Representer
+    collection :comments, decorator: Comment::Representer
+    collection :users, decorator: User::Representer
   end
 
   def model!(params)

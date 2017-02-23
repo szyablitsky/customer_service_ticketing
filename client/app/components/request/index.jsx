@@ -4,6 +4,7 @@ import TimeAgo from 'react-timeago'
 
 import RequestInfo from './info'
 import Button from 'shared/components/button'
+import Comments from '../../containers/request/comments'
 
 export default class Request extends React.Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ export default class Request extends React.Component {
           Request is closed.
           {customer && <span> You can reopen it by adding comment.</span>}
         </div>}
+        {Boolean(request) && <Comments requestId={request.id}/>}
       </div>
     )
   }

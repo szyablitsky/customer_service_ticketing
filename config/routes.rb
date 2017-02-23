@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     resources :requests, only: [:index, :create] do
       post :close, on: :member
+      resources :comments, only: :create
     end
   end
 

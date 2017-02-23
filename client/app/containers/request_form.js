@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { changeField, create } from '../actions/request'
-import RequestCreate from '../components/request_create'
+import RequestForm from '../components/request_form'
 
 export default connect(
   (state) => ({
@@ -14,4 +14,4 @@ export default connect(
     submitting: state.request.submitting,
   }),
   (dispatch) => bindActionCreators({ changeField, create }, dispatch)
-)(RequestCreate)
+)(RequestForm)

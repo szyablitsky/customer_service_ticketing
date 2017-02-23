@@ -16,12 +16,16 @@ export const initialState = {
   loaded: false,
   fetching: false,
   closingId: null,
+  commentingId: null,
+  commentingErrors: {},
 }
 
 export default function(state = initialState, action = null) {
-  const { type, user, filter, response, request, id } = action
+  const { type, user, filter, response, request, id, errors } = action
 
   switch (type) {
+
+    // authentication ----------------------------------------------------------
 
     case authActionTypes.SUBMIT_SUCCESS:
       return { ...state, filter: initialFilter[user.role] }
@@ -29,8 +33,12 @@ export default function(state = initialState, action = null) {
     case authActionTypes.SIGN_OUT_SUCCESS:
       return initialState
 
+    // filter ------------------------------------------------------------------
+
     case requestsActionTypes.CHANGE_FILTER:
       return { ...state, filter }
+
+    // fetch -------------------------------------------------------------------
 
     case requestsActionTypes.FETCH_BEGIN:
       return { ...state, fetching: true }
@@ -46,6 +54,8 @@ export default function(state = initialState, action = null) {
         ids: map(response.requests, (request) => request.id), // eslint-disable-line no-shadow
       }
 
+    // close -------------------------------------------------------------------
+
     case requestActionTypes.CREATE_SUCCESS:
       return { ...state, ids: [request.id, ...state.ids] }
 
@@ -54,7 +64,21 @@ export default function(state = initialState, action = null) {
 
     case requestActionTypes.CLOSE_FAILURE:
     case requestActionTypes.CLOSE_SUCCESS:
-      return { ...state, closingId: id }
+      return { ...state, closingId: null }
+
+    // comment -----------------------------------------------------------------
+
+    case requestActionTypes.COMMENT_BEGIN:
+      return { ...state, commentingId: id, commentingErrors: {} }
+
+    case requestActionTypes.COMMENT_ERROR:
+      return { ...state, commentingId: null, commentingErrors: errors }
+
+    case requestActionTypes.COMMENT_FAILURE:
+      return { ...state, commentingId: null }
+
+    case requestActionTypes.COMMENT_SUCCESS:
+      return { ...state, commentingId: null, commentingErrors: {} }
 
     default:
       return state

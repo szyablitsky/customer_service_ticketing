@@ -12,11 +12,23 @@ class Request::Facade
       end.all
   end
 
+  def comments
+    @comments ||= Comment.where(request_id: requests.map(&:id)).order(created_at: :desc)
+  end
+
+  def users
+    User.where(id: user_ids)
+  end
+
   private
 
   attr_reader :user
 
   def scope
     Request.order(created_at: :desc)
+  end
+
+  def user_ids
+    (requests.map(&:user_id) | comments.map(&:user_id)).uniq
   end
 end

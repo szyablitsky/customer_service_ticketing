@@ -15,3 +15,30 @@ $closed-notice-background-color: #f1f1cd
   padding: 10px
   background-color: $closed-notice-background-color
   color: $closed-notice-color
+
+.comments
+  margin-top: 20px
+
+.comments-list
+  list-style: none
+  margin: 0
+  padding: 0
+
+$comment-separator-color: #eee
+
+.comment
+  &:not(:last-child)
+    margin-bottom: 10px
+    border-bottom: 1px dashed $comment-separator-color
+    padding-bottom: 10px
+
+$comment-meta-color: #aaa
+
+.comment-meta
+  color: $comment-meta-color
+
+.comment-form
+  margin-top: 20px
+
+  > .h2
+    margin-bottom: 0

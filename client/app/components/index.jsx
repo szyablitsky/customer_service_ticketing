@@ -6,7 +6,7 @@ import Redirect from 'react-router-dom/Redirect'
 
 import UserInfo from '../containers/user_info'
 import Auth from '../containers/auth'
-import RequestCreate from '../containers/request_create'
+import RequestForm from '../containers/request_form'
 import Requests from '../containers/requests/'
 import Request from '../containers/request/'
 
@@ -25,7 +25,7 @@ const App = () =>
       <div className='container'>
         <Switch>
           <Route path='/auth' component={Auth}/>
-          <Route path='/requests/new' component={RequestCreate}/>
+          <Route path='/requests/new' component={RequestForm}/>
           <Route path='/requests/:id' component={Request}/>
           <Route path='/requests' component={Requests}/>
           <Redirect to='/requests'/>
