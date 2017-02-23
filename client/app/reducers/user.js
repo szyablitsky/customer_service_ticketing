@@ -1,5 +1,3 @@
-import omit from 'lodash/omit'
-
 import * as actionTypes from '../constants/auth'
 
 export const initialState = {
@@ -14,11 +12,9 @@ export default function(state = initialState, action = null) {
 
   switch (type) {
 
-    // authentication
     case actionTypes.SUBMIT_SUCCESS:
       return { ...state, ...user }
 
-    // sign out
     case actionTypes.SIGN_OUT_SUCCESS:
       return initialState
 

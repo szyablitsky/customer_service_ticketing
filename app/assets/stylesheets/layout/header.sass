@@ -5,6 +5,8 @@ $hover-shadow-color: rgba(255, 255, 255, .2)
   cursor: pointer
   font-size: 20px
   font-weight: 500
+  text-decoration: none
+  color: inherit
 
   &:hover
     text-shadow: 0 0 1px $hover-shadow-color
@@ -20,9 +22,8 @@ $hover-shadow-color: rgba(255, 255, 255, .2)
 .sign-out-link
   opacity: .7
   transition: all .3s
+  border-bottom: 1px dotted $header-text-color
   cursor: pointer
-  text-decoration: underline
-  color: inherit
 
   &:hover
     opacity: 1

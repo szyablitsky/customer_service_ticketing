@@ -1,7 +1,9 @@
 import { normalize, schema } from 'normalizr'
 
+import * as authActionTypes from '../constants/auth'
 import * as requestsActionTypes from '../constants/requests'
 import * as requestActionTypes from '../constants/request'
+
 
 export const initialState = {
   requests: {},
@@ -12,6 +14,9 @@ export default function(state = initialState, action = null) {
   const { type, response, request } = action
 
   switch (type) {
+
+    case authActionTypes.SIGN_OUT_SUCCESS:
+      return initialState
 
     case requestsActionTypes.FETCH_SUCCESS:
       return {

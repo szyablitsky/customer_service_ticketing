@@ -9,7 +9,7 @@ const fetchFailure = () => ({ type: actionTypes.FETCH_FAILURE })
 const fetchSuccess = (response) => ({ type: actionTypes.FETCH_SUCCESS, response })
 
 export const fetch = () => (dispatch, getState) => {
-  const { fetching, loaded } = getState().request
+  const { fetching, loaded } = getState().requests
   if (fetching || loaded) return
 
   dispatch(fetchBegin())

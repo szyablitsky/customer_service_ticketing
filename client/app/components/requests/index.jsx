@@ -7,7 +7,6 @@ import RequestsList from '../../containers/requests/list'
 
 export default class Requests extends React.Component {
   componentDidMount() {
-    console.log('fetch')
     this.props.fetch()
   }
 

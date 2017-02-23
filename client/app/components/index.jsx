@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'react-router-dom/Link'
 import Switch from 'react-router-dom/Switch'
 import Route from 'react-router-dom/Route'
 import Redirect from 'react-router-dom/Redirect'
@@ -12,8 +13,10 @@ const App = () =>
   <div>
     <header className='app-header'>
       <div className='container'>
-        <div className='app-title'>Customer Service</div>
-        <div className='app-title-small'>CS</div>
+        <Link to='/requests'>
+          <div className='app-title'>Customer Service</div>
+          <div className='app-title-small'>CS</div>
+        </Link>
         <UserInfo/>
       </div>
     </header>

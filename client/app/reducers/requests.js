@@ -25,6 +25,9 @@ export default function(state = initialState, action = null) {
     case authActionTypes.SUBMIT_SUCCESS:
       return { ...state, filter: initialFilter[user.role] }
 
+    case authActionTypes.SIGN_OUT_SUCCESS:
+      return initialState
+
     case requestsActionTypes.CHANGE_FILTER:
       return { ...state, filter }
 
