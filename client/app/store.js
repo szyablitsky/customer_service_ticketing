@@ -1,20 +1,26 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import omit from 'lodash/omit'
 
 import reducers, { initialStates } from './reducers/'
+import { initialFilter } from './reducers/requests'
 import { loadState } from 'shared/local_storage'
 
-export default () => {
-  const userState = loadState('user') || {}
-  const initialState = {
+const initialState = () => {
+  const user = loadState('user') || {}
+  return {
     ...initialStates,
     user: {
       ...initialStates.user,
-      ...userState,
+      ...user,
+    },
+    requests: {
+      ...initialStates.requests,
+      filter: initialFilter[user.role],
     },
   }
+}
 
+export default () => {
   const enhancers = compose(
     applyMiddleware(thunkMiddleware),
     typeof window === 'object' && typeof window.devToolsExtension !== 'undefined'
@@ -22,5 +28,5 @@ export default () => {
       : (f) => f
   )
 
-  return createStore(reducers, initialState, enhancers)
+  return createStore(reducers, initialState(), enhancers)
 }

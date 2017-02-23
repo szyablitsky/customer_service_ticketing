@@ -1,5 +1,6 @@
 import { request } from './base'
 import { loadCredentials, saveCredentials, updateApiToken } from '../credentials'
+import { saveState } from '../local_storage'
 import { notifyError } from '../components/notifier'
 import SessionEndpoint from './session'
 
@@ -11,7 +12,7 @@ function tokenNotExpired(token) {
     const payload = JSON.parse(json)
     const now = new Date()
     const diff = payload.exp - now.valueOf() / 1000
-    return diff > 59 * 60 // revert back to 5 * 60
+    return diff > 5 * 60
   } catch (ex) {
     return false
   }
@@ -20,6 +21,7 @@ function tokenNotExpired(token) {
 function forceSignOut() {
   SessionEndpoint.signOut()
   .then(() => {
+    saveState('user', null)
     saveCredentials(null)
     window.location.reload(true)
   })

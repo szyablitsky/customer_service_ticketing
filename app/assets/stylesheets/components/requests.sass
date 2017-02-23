@@ -1,0 +1,16 @@
+.filters
+  display: flex
+  list-style: none
+  margin-top: 0
+  margin-bottom: 30px
+  padding: 0
+
+.filter
+  &:not(:first-child)
+    margin-left: 20px
+
+  &.active
+    > .link
+      opacity: 1
+      border-bottom-color: transparent
+      cursor: default
