@@ -8,12 +8,16 @@ import * as requestActionTypes from '../constants/request'
 export const initialState = {
   requests: {},
   comments: {},
+  users: {},
 }
 
 export default function(state = initialState, action = null) {
-  const { type, response, request } = action
+  const { type, user, response, request } = action
 
   switch (type) {
+
+    case authActionTypes.SUBMIT_SUCCESS:
+      return { ...state, users: { [user.id]: user } }
 
     case authActionTypes.SIGN_OUT_SUCCESS:
       return initialState
@@ -42,10 +46,12 @@ export default function(state = initialState, action = null) {
 const entities = (response) => {
   const request = new schema.Entity('requests')
   const comment = new schema.Entity('comments')
+  const user = new schema.Entity('users')
 
   const normalized = normalize(response, {
     requests: [request],
     comments: [comment],
+    users: [user],
   })
 
   return normalized.entities
