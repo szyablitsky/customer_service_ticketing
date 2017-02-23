@@ -18,7 +18,7 @@ export const initialState = {
 }
 
 export default function(state = initialState, action = null) {
-  const { type, user, filter, requests, request } = action
+  const { type, user, filter, response, request } = action
 
   switch (type) {
 
@@ -39,7 +39,7 @@ export default function(state = initialState, action = null) {
         ...state,
         fetching: false,
         loaded: true,
-        ids: map(requests, (request) => request.id), // eslint-disable-line no-shadow
+        ids: map(response.requests, (request) => request.id), // eslint-disable-line no-shadow
       }
 
     case requestActionTypes.CREATE_SUCCESS:

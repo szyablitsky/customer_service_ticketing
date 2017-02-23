@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
 import RequestsList from '../../components/requests/list'
+import { filteredRequestIds } from '../../selectors/requests'
 
 export default connect(
   (state) => ({
-    // loggedIn: Boolean(state.user.id),
-    // hasRequests: state.requests.ids.length > 0,
-    // isCustomer: state.user.role === 'customer',
+    ids: filteredRequestIds(state),
+    fetching: state.requests.fetching,
   })
 )(RequestsList)

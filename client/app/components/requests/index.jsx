@@ -6,6 +6,11 @@ import RequestsFilters from '../../containers/requests/filters'
 import RequestsList from '../../containers/requests/list'
 
 export default class Requests extends React.Component {
+  componentDidMount() {
+    console.log('fetch')
+    this.props.fetch()
+  }
+
   render() {
     const { loggedIn, customer } = this.props
     if (!loggedIn) return <Redirect to='/auth'/>
@@ -27,4 +32,5 @@ export default class Requests extends React.Component {
 Requests.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   customer: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
 }

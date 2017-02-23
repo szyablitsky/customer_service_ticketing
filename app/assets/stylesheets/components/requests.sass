@@ -1,8 +1,8 @@
 .filters
   display: flex
   list-style: none
-  margin-top: 0
-  margin-bottom: 30px
+  margin-top: 10px
+  margin-bottom: 20px
   padding: 0
 
 .filter
@@ -14,3 +14,18 @@
       opacity: 1
       border-bottom-color: transparent
       cursor: default
+
+.requests-list
+  list-style: none
+  margin: 0
+  padding: 0
+
+.request-item
+  display: flex
+  justify-content: space-between
+
+  &:not(:last-child)
+    margin-bottom: 20px
+
+.time-ago
+  margin-left: 20px

@@ -6,11 +6,11 @@ export const changeFilter = (filter) => ({ type: actionTypes.CHANGE_FILTER, filt
 
 const fetchBegin = () => ({ type: actionTypes.FETCH_BEGIN })
 const fetchFailure = () => ({ type: actionTypes.FETCH_FAILURE })
-const fetchSuccess = (requests) => ({ type: actionTypes.FETCH_SUCCESS, requests })
+const fetchSuccess = (response) => ({ type: actionTypes.FETCH_SUCCESS, response })
 
 export const fetch = () => (dispatch, getState) => {
-  const { fetching } = getState().request
-  if (fetching) return
+  const { fetching, loaded } = getState().request
+  if (fetching || loaded) return
 
   dispatch(fetchBegin())
   RequestsEndpoint.index()
