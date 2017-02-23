@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
     resources :registrations, only: :create
 
-    resources :requests, only: [:index, :create]
+    resources :requests, only: [:index, :create] do
+      post :close, on: :member
+    end
   end
 
   get '*unmatched_route', to: 'pages#home'

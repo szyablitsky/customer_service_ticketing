@@ -3,13 +3,21 @@ import { bindActionCreators } from 'redux'
 
 import Request from '../../components/request/'
 import { fetch } from '../../actions/requests'
+import { close } from '../../actions/request'
 
-export default connect(
-  (state, props) => ({
+const mapStateToProps = (state, props) => {
+  const { id } = props.match.params
+  const request = state.entities.requests[id]
+  return {
     loggedIn: Boolean(state.user.id),
     fetching: state.requests.fetching,
     customer: state.user.role === 'customer',
-    request: state.entities.requests[props.match.params.id],
-  }),
-  (dispatch) => bindActionCreators({ fetch }, dispatch)
-)(Request)
+    request,
+    authorName: request && state.entities.users[request.user_id],
+    closing: state.requests.closingId === id,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetch, close }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Request)

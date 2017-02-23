@@ -29,6 +29,7 @@ export default function(state = initialState, action = null) {
       }
 
     case requestActionTypes.CREATE_SUCCESS:
+    case requestActionTypes.CLOSE_SUCCESS:
       return {
         ...state,
         requests: {

@@ -15,10 +15,11 @@ export const initialState = {
   filter: null,
   loaded: false,
   fetching: false,
+  closingId: null,
 }
 
 export default function(state = initialState, action = null) {
-  const { type, user, filter, response, request } = action
+  const { type, user, filter, response, request, id } = action
 
   switch (type) {
 
@@ -47,6 +48,13 @@ export default function(state = initialState, action = null) {
 
     case requestActionTypes.CREATE_SUCCESS:
       return { ...state, ids: [request.id, ...state.ids] }
+
+    case requestActionTypes.CLOSE_BEGIN:
+      return { ...state, closingId: id }
+
+    case requestActionTypes.CLOSE_FAILURE:
+    case requestActionTypes.CLOSE_SUCCESS:
+      return { ...state, closingId: id }
 
     default:
       return state

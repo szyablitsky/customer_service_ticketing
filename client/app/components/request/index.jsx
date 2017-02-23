@@ -16,10 +16,11 @@ export default class Request extends React.Component {
   }
 
   render() {
-    const { loggedIn, fetching, customer, request, authorName } = this.props
+    const { loggedIn, fetching, customer, request, authorName, closing } = this.props
     if (!loggedIn) return <Redirect to='/auth'/>
 
     const closable = customer && request && request.open
+    const closed = request && !request.open
 
     return (
       <div>
@@ -34,7 +35,12 @@ export default class Request extends React.Component {
         {fetching
           ? <div>Loading...</div>
           : <RequestInfo request={request}/>}
-        {closable && <Button title='Close this request' onClick={this.handleClose}/>}
+        {closable &&
+          <Button title='Close this request' onClick={this.handleClose} Loading={closing}/>}
+        {closed && <div className='closed-notice'>
+          Request is closed.
+          {customer && <span> You can reopen it by adding comment.</span>}
+        </div>}
       </div>
     )
   }
@@ -46,6 +52,7 @@ Request.propTypes = {
   customer: PropTypes.bool.isRequired,
   request: PropTypes.object,
   authorName: PropTypes.string,
+  closing: PropTypes.bool.isRequired,
   fetch: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
 }

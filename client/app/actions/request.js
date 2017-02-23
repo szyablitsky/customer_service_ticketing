@@ -26,3 +26,24 @@ export const create = (push) => (dispatch, getState) => {
   })
   .catch(() => dispatch(createFailure()))
 }
+
+const closeBegin = (id) => ({ type: actionTypes.CLOSE_BEGIN, id })
+const closeFailure = () => ({ type: actionTypes.CLOSE_FAILURE })
+const closeSuccess = (request) => ({ type: actionTypes.CLOSE_SUCCESS, request })
+
+export const close = (id) => (dispatch, getState) => {
+  const { closingId } = getState().request
+  if (closingId) return
+
+  dispatch(closeBegin(id))
+  RequestsEndpoint.close(id)
+  .then((response) => {
+    if (response.success) {
+      dispatch(closeSuccess(response.json))
+      notifySuccess('Request closed')
+    } else {
+      dispatch(closeFailure())
+    }
+  })
+  .catch(() => dispatch(closeFailure()))
+}
