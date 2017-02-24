@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 
 import Request from '../../components/request/'
 import { fetch } from '../../actions/requests'
-import { close } from '../../actions/request'
+import { close, commentReset } from '../../actions/request'
 
 const mapStateToProps = (state, props) => {
   const { id } = props.match.params
@@ -18,6 +18,8 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetch, close }, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  fetch, close, commentReset,
+}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Request)

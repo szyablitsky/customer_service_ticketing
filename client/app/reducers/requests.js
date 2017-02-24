@@ -68,11 +68,14 @@ export default function(state = initialState, action = null) {
 
     // comment -----------------------------------------------------------------
 
+    case requestActionTypes.COMMENT_RESET:
+      return { ...state, commentingId: null, commentingErrors: {} }
+
     case requestActionTypes.COMMENT_BEGIN:
-      return { ...state, commentingId: id, commentingErrors: {} }
+      return { ...state, commentingId: id }
 
     case requestActionTypes.COMMENT_ERROR:
-      return { ...state, commentingId: null, commentingErrors: errors }
+      return { ...state, commentingId: null, commentingErrors: state.commentingId ? errors : {} }
 
     case requestActionTypes.COMMENT_FAILURE:
       return { ...state, commentingId: null }

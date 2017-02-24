@@ -6,7 +6,7 @@ import RequestsFilters from '../../containers/requests/filters'
 import RequestsList from '../../containers/requests/list'
 
 export default class Requests extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetch()
   }
 

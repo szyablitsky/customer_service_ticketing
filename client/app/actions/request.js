@@ -48,6 +48,8 @@ export const close = (id) => (dispatch, getState) => {
   .catch(() => dispatch(closeFailure()))
 }
 
+export const commentReset = () => ({ type: actionTypes.COMMENT_RESET })
+
 const commentBegin = (id) => ({ type: actionTypes.COMMENT_BEGIN, id })
 const commentError = (errors) => ({ type: actionTypes.COMMENT_ERROR, errors })
 const commentFailure = () => ({ type: actionTypes.COMMENT_FAILURE })

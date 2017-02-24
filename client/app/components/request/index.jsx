@@ -7,7 +7,8 @@ import Button from 'shared/components/button'
 import Comments from '../../containers/request/comments'
 
 export default class Request extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
+    this.props.commentReset()
     this.props.fetch()
   }
 
@@ -55,6 +56,7 @@ Request.propTypes = {
   request: PropTypes.object,
   authorName: PropTypes.string,
   closing: PropTypes.bool.isRequired,
+  commentReset: PropTypes.func.isRequired,
   fetch: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
 }
