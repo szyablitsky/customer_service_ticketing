@@ -9,7 +9,8 @@
   "scripts": {
     "build:test": "webpack --config webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
-    "build:development": "webpack -w --config webpack.config.js"
+    "build:development": "webpack -w --config webpack.config.js",
+    "test": "lab tests/setup.js tests/**/*.js tests/**/**/*.js --leaks"
   },
   "cacheDirectories": [
     "node_modules",
@@ -45,5 +46,13 @@
     "webpack": "^1.14.0",
     "whatwg-fetch": "^2.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-register": "^6.23.0",
+    "code": "^4.0.0",
+    "enzyme": "^2.7.1",
+    "jsdom": "^9.11.0",
+    "lab": "^12.1.0",
+    "react-addons-test-utils": "^15.4.2",
+    "sinon": "^1.17.7"
+  }
 }
