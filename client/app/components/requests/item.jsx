@@ -8,7 +8,7 @@ export default class RequestItem extends React.Component {
     return (
       <li className='request-item'>
         <Link className='link' to={`/requests/${id}`}>{subject}</Link>
-        <TimeAgo className='time-ago' date={createdAt}/>
+        <div className='time-ago'>submitted <TimeAgo date={createdAt}/></div>
       </li>
     )
   }

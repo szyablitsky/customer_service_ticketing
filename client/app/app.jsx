@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import Router from 'react-router-dom/BrowserRouter'
 
 import store from './store'
-import AppContainer from './components/'
+import AppContainer from './containers/'
 
 const App = () =>
   <Router>

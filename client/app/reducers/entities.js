@@ -4,6 +4,7 @@ import * as authActionTypes from '../constants/auth'
 import * as requestsActionTypes from '../constants/requests'
 import * as requestActionTypes from '../constants/request'
 import * as commentActionTypes from '../constants/comment'
+import * as usersActionTypes from '../constants/users'
 
 
 export const initialState = {
@@ -24,6 +25,7 @@ export default function(state = initialState, action = null) {
       return initialState
 
     case requestsActionTypes.FETCH_SUCCESS:
+    case usersActionTypes.FETCH_SUCCESS:
       return {
         ...state,
         ...entities(response),

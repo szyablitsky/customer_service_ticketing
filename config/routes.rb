@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       post :close, on: :member
       resources :comments, only: :create
     end
+
+    resources :users, only: :index
   end
 
   get '*unmatched_route', to: 'pages#home'

@@ -10,7 +10,7 @@ export default class UserInfo extends React.Component {
         {name}
         {role !== 'customer' && ` (${role})`}
         {' | '}
-        <a href='#' className='sign-out-link' onClick={signOut}>Sign Out</a>
+        <a href='#' className='app-title-link' onClick={signOut}>Sign Out</a>
       </div>
     )
   }
