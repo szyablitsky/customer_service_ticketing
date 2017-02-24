@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :comments, only: :create
     end
 
-    resources :users, only: :index
+    resources :users, only: [:index, :update]
   end
 
   get '*unmatched_route', to: 'pages#home'
