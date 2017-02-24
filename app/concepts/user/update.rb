@@ -7,6 +7,14 @@ class User::Update < ApplicationOperation
     property :role
 
     validates :role, presence: true, inclusion: %w(customer support admin)
+    validate :at_least_ohe_admin
+
+    def at_least_ohe_admin
+      return if model.role != 'admin'
+      return if role == 'admin'
+      return if User.where(role: 'admin').count > 1
+      errors.add(:base, 'There must be at least one admin user')
+    end
   end
 
   representer User::Representer

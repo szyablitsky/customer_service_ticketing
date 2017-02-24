@@ -19,7 +19,8 @@ export default function(state = initialState, action = null) {
   switch (type) {
 
     case authActionTypes.SUBMIT_SUCCESS:
-      return { ...state, users: { [user.id]: user } }
+    case usersActionTypes.CHANGE_ROLE_SUCCESS:
+      return { ...state, users: { ...state.users, [user.id]: user } }
 
     case authActionTypes.SIGN_OUT_SUCCESS:
       return initialState

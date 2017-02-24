@@ -1,5 +1,4 @@
-import map from 'lodash/map'
-
+import * as authActionTypes from '../constants/auth'
 import * as actionTypes from '../constants/comment'
 
 export const initialState = {
@@ -25,6 +24,7 @@ export default function(state = initialState, action = null) {
     case actionTypes.CREATE_FAILURE:
       return { ...state, submitting: false }
 
+    case authActionTypes.SIGN_OUT_SUCCESS:
     case actionTypes.RESET:
     case actionTypes.CREATE_SUCCESS:
       return initialState
