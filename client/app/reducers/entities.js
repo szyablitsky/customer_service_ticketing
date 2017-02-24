@@ -3,6 +3,7 @@ import { normalize, schema } from 'normalizr'
 import * as authActionTypes from '../constants/auth'
 import * as requestsActionTypes from '../constants/requests'
 import * as requestActionTypes from '../constants/request'
+import * as commentActionTypes from '../constants/comment'
 
 
 export const initialState = {
@@ -35,11 +36,12 @@ export default function(state = initialState, action = null) {
         requests: { ...state.requests, [request.id]: request },
       }
 
-    case requestActionTypes.COMMENT_SUCCESS:
+    case commentActionTypes.CREATE_SUCCESS:
       return {
         ...state,
         requests: { ...state.requests, [payload.request.id]: payload.request },
         comments: { ...state.comments, [payload.comment.id]: payload.comment },
+        users: { ...state.users, [user.id]: user },
       }
 
     default:

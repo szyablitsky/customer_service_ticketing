@@ -14,8 +14,8 @@ RSpec.describe Request::Facade do
       end
     end
 
-    context 'support agent' do
-      let(:user) { create(:user, role: 'support agent') }
+    context 'support' do
+      let(:user) { create(:user, role: 'support') }
       let!(:unassigned_request) { create(:request) }
       let!(:assigned_request) { create(:request, support_agent: user) }
       let!(:assigned_to_other_request) { create(:request, support_agent: create(:user)) }

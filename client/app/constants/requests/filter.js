@@ -3,7 +3,7 @@ const filters = {
     open: 'Open',
     closed: 'Closed',
   },
-  'support agent': {
+  support: {
     unassigned: 'Unassigned',
     'assigned-open': 'Assigned to me (open)',
     'assigned-closed': 'Assigned to me (closed)',

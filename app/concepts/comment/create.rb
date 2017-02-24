@@ -39,7 +39,7 @@ class Comment::Create < ApplicationOperation
   attr_reader :request, :user
 
   def user_support_agent?
-    user.role == 'support agent'
+    user.role == 'support'
   end
 
   def reopen?

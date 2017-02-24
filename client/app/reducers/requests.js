@@ -6,7 +6,7 @@ import * as requestActionTypes from '../constants/request'
 
 export const initialFilter = {
   customer: 'open',
-  'support agent': 'unassigned',
+  support: 'unassigned',
   admin: 'open',
 }
 
@@ -16,12 +16,10 @@ export const initialState = {
   loaded: false,
   fetching: false,
   closingId: null,
-  commentingId: null,
-  commentingErrors: {},
 }
 
 export default function(state = initialState, action = null) {
-  const { type, user, filter, response, request, id, errors } = action
+  const { type, user, filter, response, request, id } = action
 
   switch (type) {
 
@@ -65,23 +63,6 @@ export default function(state = initialState, action = null) {
     case requestActionTypes.CLOSE_FAILURE:
     case requestActionTypes.CLOSE_SUCCESS:
       return { ...state, closingId: null }
-
-    // comment -----------------------------------------------------------------
-
-    case requestActionTypes.COMMENT_RESET:
-      return { ...state, commentingId: null, commentingErrors: {} }
-
-    case requestActionTypes.COMMENT_BEGIN:
-      return { ...state, commentingId: id }
-
-    case requestActionTypes.COMMENT_ERROR:
-      return { ...state, commentingId: null, commentingErrors: state.commentingId ? errors : {} }
-
-    case requestActionTypes.COMMENT_FAILURE:
-      return { ...state, commentingId: null }
-
-    case requestActionTypes.COMMENT_SUCCESS:
-      return { ...state, commentingId: null, commentingErrors: {} }
 
     default:
       return state

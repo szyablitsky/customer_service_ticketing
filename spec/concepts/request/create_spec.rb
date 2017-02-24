@@ -41,7 +41,7 @@ RSpec.describe Request::Create do
   end
 
   context 'user is not a customer' do
-    let(:user) { create(:user, role: 'support agent') }
+    let(:user) { create(:user, role: 'support') }
     let(:request) { { 'subject' => 'subject', 'description' => 'description' } }
     let(:params) { { current_user: user, 'request' => request } }
 
