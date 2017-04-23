@@ -16,8 +16,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-config/database.yml
-
 spec/examples.txt
 
 # React on Rails

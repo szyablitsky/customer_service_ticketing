@@ -11,7 +11,7 @@ end
 
 gem 'rails'
 
-gem 'mysql2'
+gem 'pg'
 gem 'puma'
 
 gem 'bcrypt'
