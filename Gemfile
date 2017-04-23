@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
+
+ruby '2.4.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -22,8 +26,7 @@ gem 'multi_json'
 gem 'responders'
 gem 'trailblazer-rails', '< 1 '
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug', platform: :mri
