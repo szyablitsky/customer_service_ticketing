@@ -14,6 +14,10 @@ Back-end is a Rails application used mainly as API endpoint.
 Business logic is encapsulated in operations powered by
 [Trailblazer](https://github.com/trailblazer/trailblazer) gem.
 
-API calls are authenticated via JWT. It can be consumed by mobile applications with ease.
+API calls are authenticated via JWT. It can be consumed by mobile applications
+with ease.
 
 Code is tested with RSpec and Lab/Enzyme.
+
+Site markup is adaptive. No CSS framework is used. All styles are developed
+specially for this project.
