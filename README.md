@@ -7,9 +7,11 @@ and customer service agent can reply to customer. Administrator can manage
 everything.
 
 The application is deployed at heroku https://customer-service.herokuapp.com.
-You can register with any fictional email you want. If you want to check
-administrative interface, you can use `admin@cs` login and `admin` password.
-But please leave this admin as admin ;), so everyone can try this.
+You can register with any fictional email you want.
+
+If you want to check administrative interface, or change the role of your user,
+you can use `admin@cs` login and `admin` password. But please leave this admin
+as admin ;), so everyone can try this.
 
 Front-end is an SPA built with React, Redux and React Router.
 Integration of back- and front-end via Webpack is provided by
