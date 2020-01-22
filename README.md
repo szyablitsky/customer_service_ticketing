@@ -56,5 +56,5 @@ Application logic is provided by operations. They are built using Trailblazer ge
 ## Integration of back-end and front-end
 The only reason I do not use Rails in strict API-mode is React-on-Rails gem. This gem provides infrastructure for using node modules and webpack transformations inside of Rails assets pipeline. It uses webpack to build client JavaScript file which contains React components and is referenced inside application.js file served by assets pipeline.
 
-I real life I’d build front-end application independently and serve it from CDN. But this requires too much additional steps for simple evaluation project. One of the additional steps will be using rack-cors gem so application can be served from main domain and API from ‘api’ subdomain.
+In real life I’d build front-end application independently and serve it from CDN. But this requires too much additional steps for simple evaluation project. One of the additional steps will be using rack-cors gem so application can be served from main domain and API from ‘api’ subdomain.
 Also application can benefit from real-time updates which can be provided via ActionCable or third-party services.
