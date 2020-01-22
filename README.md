@@ -3,7 +3,7 @@
 This is an example of my ~current~ (3 years ago) coding abilities.
 
 It's a customer service ticketing application where customers can ask for help
-and the customer service agent can reply to a customer. Administrator can manage
+and the customer service agent can reply to a customer. The administrator can manage
 everything.
 
 The application is deployed at Heroku https://customer-service.herokuapp.com.
@@ -38,25 +38,25 @@ We can delete the compromised “refresh” token. And after JWT expiration clie
 
 
 ## Front-end Application
-Front-end application built around a centralised store using unidirectional data flow provided by the Redux library. The centralized store contains the state of an application and uses actions to modify state with reducers.
+Front-end application built around a centralized store using unidirectional data flow provided by the Redux library. The centralized store contains the state of an application and uses actions to modify state with reducers.
 
 The current state of the application is represented on the page by components which are rendered by the React library. React components are logicless and only serve as the functional transformations of application state into HTML markup.
 
-Application logic is provided by actions, which are called by components in response to user actions. Asynchronous actions are supported by the redux-thunk library.
+Application logic is provided by actions, that are called by components in response to user actions. Asynchronous actions are supported by the redux-thunk library.
 
-Actions are processed with reducers. Reducer is a function that modifies the application state in the response to action.
+Actions are processed with reducers. Reducer is a function that modifies the application state in response to an action.
 Modified application state used by React components to represent changes to the user.
 
 ## Rails API (back-end)
 The API server is built using Ruby on Rails framework for routing, controllers, models and assets pipeline.
 
-Models and controllers are logicless. Models only serve as a data access layer. Controllers only translate HTTP request into operations call.
+Models and controllers are logicless. Models only serve as a data access layer. Controllers only translate HTTP requests into operation calls.
 
-Application logic is provided by operations. They are built using Trailblazer gem. It provides a unified interface for validation of input parameters and response representation.
+Application logic is provided by operations. They are built using Trailblazer gem. It provides a unified interface for the validation of input parameters and response representation.
 
 ## Integration of back-end and front-end
 The only reason I do not use Rails in strict API-mode is React-on-Rails gem. This gem provides the infrastructure for using node modules and webpack transformations inside of the Rails assets pipeline. It uses a webpack to build client JavaScript file which contains React components and is referenced inside the `application.js` file served by assets pipeline.
 
-In real life, I’d build front-end application independently and serve it from CDN. But this requires too many additional steps for a simple evaluation project. One of the additional steps will be using rack-cors gem so the application can be served from the main domain and API from the `api` subdomain.
+In real life, I’d build a front-end application independently and serve it from CDN. But this requires too many additional steps for a simple evaluation project. One of the additional steps will be using rack-cors gem so the application can be served from the main domain and API from the `api` subdomain.
 
-Also, application can benefit from real-time updates that can be provided via ActionCable or third-party services.
+Also, the application can benefit from real-time updates that can be provided via ActionCable or third-party services.
