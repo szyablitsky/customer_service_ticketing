@@ -40,7 +40,7 @@ We can delete the compromised “refresh” token. And after JWT expiration clie
 ## Front-end Application
 Front-end application built around a centralized store using unidirectional data flow provided by the Redux library. The centralized store contains the state of an application and uses actions to modify state with reducers.
 
-The current state of the application is represented on the page by components which are rendered by the React library. React components are logicless and only serve as the functional transformations of application state into HTML markup.
+The current state of the application is represented on the page by components that are rendered by the React library. React components are logicless and only serve as the functional transformations of application state into HTML markup.
 
 Application logic is provided by actions, that are called by components in response to user actions. Asynchronous actions are supported by the redux-thunk library.
 
