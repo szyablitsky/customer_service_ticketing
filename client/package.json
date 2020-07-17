@@ -30,7 +30,7 @@
     "expose-loader": "^0.7.1",
     "humps": "^2.0.0",
     "imports-loader": "^0.7.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "normalizr": "^3.2.1",
     "query-string": "^4.3.2",
     "react": "^15.4.1",
